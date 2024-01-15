@@ -3,39 +3,29 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-
 class RegisterController extends Controller
 {
-    use RegistersUsers;
-
-    protected $redirectTo = RouteServiceProvider::HOME;
-
-    public function __construct()
+    public function showRegistrationForm()
     {
-        $this->middleware('guest');
+        return view('auth.register');
     }
 
-    protected function validator(array $data)
+    public function register(Request $request)
     {
-        return Validator::make($data, [
-            'username' => ['required', 'string', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-            'role' => ['required', 'string'],
+        $request->validate([
+            // Regulile de validare
         ]);
-    }
 
-    protected function create(array $data)
-    {
-        return User::create([
-            'username' => $data['username'],
-            'password' => Hash::make($data['password']),
-            'role' => $data['role'],
+        // Crearea utilizatorului
+        $user = User::create([
+            // Datele utilizatorului
         ]);
+
+        // Logarea automată a utilizatorului, etc.
+
+        return redirect()->intended('dashboard'); // Schimbă cu ruta dorită
     }
 }
+

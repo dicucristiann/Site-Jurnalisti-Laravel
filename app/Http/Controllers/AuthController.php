@@ -10,7 +10,7 @@ class AuthController extends Controller
     // Metoda pentru afișarea formularului de login
     public function showLoginForm()
     {
-        return view('auth.login');
+        return view('login');
     }
 
     // Metoda pentru procesarea datelor de login

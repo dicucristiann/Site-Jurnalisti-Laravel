@@ -17,8 +17,9 @@ use App\Http\Controllers\PasswordResetController;
 |
 */
 //register
-Route::get('register', [RegisterController::class, 'showRegistrationForm']);
-Route::post('register', [RegisterController::class, 'register']);
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register']);
+
 //login
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -29,6 +30,3 @@ Route::get('/password/reset', [PasswordResetController::class, 'showResetForm'])
 Route::post('/password/reset', [PasswordResetController::class, 'reset'])->name('password.update');
 //index
 Route::get('/', [ArticleController::class, 'index']);
-Route::get('/', function () {
-    return view('welcome');
-});
