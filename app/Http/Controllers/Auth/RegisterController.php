@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use App\Models\User;
+
 class RegisterController extends Controller
 {
     public function showRegistrationForm()
@@ -15,12 +17,17 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            // Regulile de validare
+            'username' => 'required|string|max:255|unique:users', // Assuming 'username' is unique in 'users' table
+            'password' => 'required|string|min:8|confirmed',
+            'role' => 'required|in:journalist,editor,reader', // Validates against the listed roles
         ]);
 
-        // Crearea utilizatorului
+        // Create the user
         $user = User::create([
-            // Datele utilizatorului
+            'username' => $request->username,
+            'password' => Hash::make($request->password),
+            'role' => $request->role,
+            // Add other fields like email, name, etc., if needed
         ]);
 
         // Logarea automată a utilizatorului, etc.
