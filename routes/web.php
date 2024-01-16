@@ -5,6 +5,9 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\PasswordResetController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\JournalistController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +32,11 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/password/reset', [PasswordResetController::class, 'showResetForm'])->name('password.request');
 Route::post('/password/reset', [PasswordResetController::class, 'reset'])->name('password.update');
 //index
+
+Route::get('/dashboard', [DashboardController::class, "showDashboard"])->name('dashboard');
+Route::get('/journalist/dashboard', [JournalistController::class, "showJournalistDashboard"])->name('journalist.dashboard');
+
+Route::get('/journalist/create', [JournalistController::class, 'showJournalistCreate'])->name('journalist.create');
+Route::post('/journalist/create', [ArticleController::class, 'createArticle']);
+
 Route::get('/', [ArticleController::class, 'index']);

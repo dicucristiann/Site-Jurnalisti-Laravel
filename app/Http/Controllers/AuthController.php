@@ -25,7 +25,13 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             // Redirecționează în funcție de rol
-            return redirect()->intended('dashboard'); // Modifică această linie conform logicii tale
+            $user = Auth::user();
+
+            return match ($user->role) {
+                'journalist' => redirect()->intended('journalist/dashboard'),
+                'editor' => redirect()->intended('editor/dashboard'),
+                default => redirect()->intended('dashboard'),
+            };
         }
 
         return back()->withErrors([

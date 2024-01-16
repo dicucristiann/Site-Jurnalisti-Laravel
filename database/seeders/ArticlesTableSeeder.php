@@ -24,14 +24,14 @@ class ArticlesTableSeeder extends Seeder
             ],
             [
                 'title' => 'Tendințe Actuale în Tehnologia Informației',
-                'author_id' => 2,
+                'author_id' => 1,
                 'content' => 'Conținutul articolului despre IT...',
                 'category' => 'IT',
                 'status_message' => 'Articolul este în așteptare.'
             ],
             [
                 'title' => 'Rezultate Surprinzătoare în Liga Sportivă',
-                'author_id' => 3,
+                'author_id' => 1,
                 'content' => 'Conținutul articolului despre sport...',
                 'category' => 'Sport',
                 'status_message' => 'Articolul este în așteptare.'

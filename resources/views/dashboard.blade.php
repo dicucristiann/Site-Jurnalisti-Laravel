@@ -20,10 +20,10 @@
     <div class="article-container">
         @foreach ($articles as $article)
             <div class="article">
-                <h2>{{ $article->title }}</h2>
-                @if (Auth::check())
+                <h2>{{ $article->getTitle() }}</h2>
+                @if (session('user_id'))
                     <div class="article-content">
-                        <p>{{ $article->title }}</p>
+                        <p>{{ $article->getContent() }}</p>
                     </div>
                 @endif
             </div>
@@ -32,14 +32,10 @@
 
     <div class="btn-container d-flex justify-content-center">
         @if (Auth::check())
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button type="submit" class="btn btn-danger">Logout</button>
-            </form>
+            <a href="{{ route('logout') }}" class="btn btn-danger">Logout</a>
         @else
             <a href="{{ route('login') }}" class="btn btn-primary btn-lg btn-block glow-on-hover">Login</a>
         @endif
     </div>
 </div>
 @endsection
-

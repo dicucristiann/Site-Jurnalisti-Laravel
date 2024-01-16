@@ -32,4 +32,16 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'title',
+        'author_id',
+        'content',
+        'category',
+        'status',
+        'status_message', // Add this if you want it to be mass assignable
+    ];
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'author_id');
+    }
 }

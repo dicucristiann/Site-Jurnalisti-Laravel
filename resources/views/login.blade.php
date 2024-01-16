@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}"> <!-- Asigură-te că calea este corectă -->
-</head>
-<body>
+@extends('layout')
+
+@section('title', 'Home Page')
+
+@section('content')
 <div class="container">
     <div class="wrapper">
         <h2>Login</h2>
@@ -39,5 +35,4 @@
         </form>
     </div>
 </div>
-</body>
-</html>
+@endsection
