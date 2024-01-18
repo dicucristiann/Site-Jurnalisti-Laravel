@@ -10,10 +10,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">JournalWeb</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 @if (Auth::check())
-                    <!-- Link visible only to journalists -->
                     @if (Auth::user()->role == 'journalist')
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('journalist.dashboard') }}">Your Dashboard</a>
@@ -24,15 +23,14 @@
                             <a class="nav-link" href="{{ route('editor.dashboard') }}">Your Dashboard</a>
                         </li>
                     @endif
-                    <!-- Dropdown for authenticated users -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ Auth::user()->username }} <!-- Display user's name -->
+                            {{ Auth::user()->username }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
+                                         document.getElementById('logout-form').submit();">
                                 Logout
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -41,7 +39,6 @@
                         </div>
                     </li>
                 @else
-                    <!-- Login link for guests -->
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">Login</a>
                     </li>

@@ -17,7 +17,7 @@ class JournalistController extends Controller
             return redirect()->route('login');
         }
         $authorId = Auth::id();
-        $articles = Article::where('author_id', $authorId)->get();
+        $articles = Article::where('author_id', $authorId)->orderBy("created_at","desc")->get();
 
         return view('journalist.dashboard',compact("articles"));
     }

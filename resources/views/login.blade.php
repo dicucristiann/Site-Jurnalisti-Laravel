@@ -28,9 +28,6 @@
             </div>
             <p>Don't have an account? <a href="{{ url('register') }}">Sign up now</a>.</p>
         </form>
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
-            <button type="submit" class="btn btn-danger">Logout</button>
-        </form>
+
     </div>
 @endsection

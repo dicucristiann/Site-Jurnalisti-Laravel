@@ -35,7 +35,7 @@ class RegisterController extends Controller
         return match ($user->role) {
             'journalist' => redirect()->intended('journalist/dashboard'),
             'editor' => redirect()->intended('editor/dashboard'),
-            default => redirect()->intended('index'),
+            default => redirect()->intended('/'),
         };    }
 }
 

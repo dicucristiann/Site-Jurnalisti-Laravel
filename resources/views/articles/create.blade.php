@@ -17,14 +17,11 @@
             </div>
             <div class="form-group">
                 <label for="category">Category</label>
-                <input type="text" class="form-control" id="category" name="category" required>
-            </div>
-            <div class="form-group">
-                <label for="status">Status</label>
-                <select class="form-control" id="status" name="status">
-                    <option value="waiting">Waiting</option>
-                    <option value="approved">Approved</option>
-                    <option value="rejected">Rejected</option>
+                <select class="form-control" id="category" name="category">
+                    <option value="artistic">Artistic</option>
+                    <option value="technic">Technic</option>
+                    <option value="science">Science</option>
+                    <option value="moda">Moda</option>
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>

@@ -30,7 +30,7 @@ class AuthController extends Controller
             return match ($user->role) {
                 'journalist' => redirect()->intended('journalist/dashboard'),
                 'editor' => redirect()->intended('editor/dashboard'),
-                default => redirect()->intended('dashboard'),
+                default => redirect()->intended('/'),
             };
         }
 

@@ -16,8 +16,7 @@ class ArticleController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
-            'category' => 'required|max:50',
-            'status' => 'required|in:waiting,approved,rejected',
+            'category' => 'required|in:artistic,technic,science,moda',
         ]);
 
         // Assuming the author's ID is available via auth (authenticated user)
@@ -27,7 +26,6 @@ class ArticleController extends Controller
             'title' => $validatedData['title'],
             'content' => $validatedData['content'],
             'category' => $validatedData['category'],
-            'status' => $validatedData['status'],
             'author_id' => $authorId,
             // 'status_message' can be added based on your application logic
         ]);
@@ -90,7 +88,8 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::where('status', 'approved')->get();
-        return view('index', compact('articles'));
+
+        return view('articles.index', compact('articles'));
     }
 
 }
