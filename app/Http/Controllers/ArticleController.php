@@ -7,13 +7,11 @@ use App\Models\Article;
 
 class ArticleController extends Controller
 {
-    public function index()
+    public function create()
     {
-        $articles = Article::where('status', 'approved')->get(); // Asumând că ai un câmp 'status'
-        return view('index', compact('articles'));
+        return view('articles.create');
     }
-
-    public function createArticle(Request $request)
+    public function store(Request $request)
     {
         $validatedData = $request->validate([
             'title' => 'required|max:255',
@@ -36,5 +34,40 @@ class ArticleController extends Controller
 
         return redirect()->route('journalist.dashboard');
     }
+
+
+    public function edit($id)
+    {
+        $article = Article::findOrFail($id);
+        return view('articles.edit', compact('article'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            // Add other validation rules as needed
+        ]);
+
+        $article = Article::findOrFail($id);
+        $article->update($request->all());
+
+        return redirect()->route('journalist.dashboard')->with('success', 'Article updated successfully.');
+    }
+
+    public function destroy($id)
+    {
+        $article = Article::findOrFail($id);
+        $article->delete();
+        return redirect()->route('journalist.dashboard');
+    }
+
+    public function index()
+    {
+        $articles = Article::where('status', 'approved')->get();
+        return view('index', compact('articles'));
+    }
+
 }
 

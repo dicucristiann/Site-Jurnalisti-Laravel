@@ -10,7 +10,7 @@ class JournalistController extends Controller
 {
 
 
-    public function showJournalistDashboard()
+    public function dashboard()
     {
         if (!Auth::check()) {
             // Handle the unauthenticated case, perhaps redirecting to login
@@ -21,9 +21,7 @@ class JournalistController extends Controller
 
         return view('journalist.dashboard',compact("articles"));
     }
-    public function showJournalistCreate(){
-        return view("journalist.create");
-    }
+
 
 
 }

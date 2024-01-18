@@ -30,11 +30,6 @@
                         <p class="card-text">
                             <small class="text-muted">Posted on: {{ $article->created_at->format('M d, Y') }}</small>
                         </p>
-                        @if($article->status_message)
-                            <p class="card-text">
-                                <small class="text-muted">Status Message: {{ $article->status_message }}</small>
-                            </p>
-                        @endif
                     @else
                         <p class="card-text">Login to read the article.</p>
                     @endif

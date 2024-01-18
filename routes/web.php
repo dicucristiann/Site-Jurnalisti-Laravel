@@ -34,9 +34,19 @@ Route::post('/password/reset', [PasswordResetController::class, 'reset'])->name(
 //index
 
 Route::get('/dashboard', [DashboardController::class, "showDashboard"])->name('dashboard');
-Route::get('/journalist/dashboard', [JournalistController::class, "showJournalistDashboard"])->name('journalist.dashboard');
 
-Route::get('/journalist/create', [JournalistController::class, 'showJournalistCreate'])->name('journalist.create');
-Route::post('/journalist/create', [ArticleController::class, 'createArticle']);
+Route::resource('articles', ArticleController::class);
+
+// Assuming you have authentication set up:
+Route::middleware(['auth'])->group(function () {
+    // Place any routes that require the user to be authenticated inside this group
+
+    // Additional custom routes for authenticated users
+    // For example, a route to the journalist dashboard
+    Route::get('/journalist/dashboard', [JournalistController::class, 'dashboard'])->name('journalist.dashboard');
+    Route::resource('articles', ArticleController::class);
+
+});
+
 
 Route::get('/', [ArticleController::class, 'index']);
