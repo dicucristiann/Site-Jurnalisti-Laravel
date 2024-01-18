@@ -3,7 +3,6 @@
 @section('title', 'Home Page')
 
 @section('content')
-<div class="container">
     <div class="wrapper">
         <h2>Login</h2>
         <p>Please fill in your credentials to login.</p>
@@ -34,5 +33,4 @@
             <button type="submit" class="btn btn-danger">Logout</button>
         </form>
     </div>
-</div>
 @endsection

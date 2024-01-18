@@ -3,7 +3,7 @@
 @section('title', 'Create Article')
 
 @section('content')
-<div class="container">
+<div >
     <div>
         <h1 class="my-5 welcome-message">Hello Journalist</h1>
        <a href="{{route("journalist.create")}}">Create article </a>
