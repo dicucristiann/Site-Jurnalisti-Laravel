@@ -19,7 +19,11 @@
                             <a class="nav-link" href="{{ route('journalist.dashboard') }}">Your Dashboard</a>
                         </li>
                     @endif
-
+                    @if (Auth::user()->role == 'editor')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('editor.dashboard') }}">Your Dashboard</a>
+                        </li>
+                    @endif
                     <!-- Dropdown for authenticated users -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

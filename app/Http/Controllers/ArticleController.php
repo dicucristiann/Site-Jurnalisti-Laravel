@@ -56,12 +56,36 @@ class ArticleController extends Controller
         return redirect()->route('journalist.dashboard')->with('success', 'Article updated successfully.');
     }
 
+    public function editStatus($id)
+    {
+        $article = Article::findOrFail($id);
+        return view('articles.edit_status', compact('article'));
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|in:approved,rejected',
+            'status_message' => 'nullable|string',
+        ]);
+
+        $article = Article::findOrFail($id);
+        $article->update([
+            'status' => $request->status,
+            'status_message' => $request->status_message,
+        ]);
+
+        return redirect()->route('articles.index')->with('success', 'Article status updated successfully.');
+    }
+
     public function destroy($id)
     {
         $article = Article::findOrFail($id);
         $article->delete();
         return redirect()->route('journalist.dashboard');
     }
+
+
 
     public function index()
     {

@@ -32,7 +32,10 @@ class RegisterController extends Controller
 
         // Logarea automată a utilizatorului, etc.
 
-        return redirect()->intended('dashboard'); // Schimbă cu ruta dorită
-    }
+        return match ($user->role) {
+            'journalist' => redirect()->intended('journalist/dashboard'),
+            'editor' => redirect()->intended('editor/dashboard'),
+            default => redirect()->intended('index'),
+        };    }
 }
 

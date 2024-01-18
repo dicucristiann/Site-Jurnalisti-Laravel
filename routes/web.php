@@ -7,6 +7,8 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JournalistController;
+use App\Http\Controllers\EditorController;
+
 
 
 /*
@@ -37,13 +39,15 @@ Route::get('/dashboard', [DashboardController::class, "showDashboard"])->name('d
 
 Route::resource('articles', ArticleController::class);
 
-// Assuming you have authentication set up:
 Route::middleware(['auth'])->group(function () {
-    // Place any routes that require the user to be authenticated inside this group
 
-    // Additional custom routes for authenticated users
-    // For example, a route to the journalist dashboard
+
+    Route::get('articles/{id}/status', [ArticleController::class, 'editStatus'])->name('articles.editStatus');
+    Route::put('articles/{id}/status', [ArticleController::class, 'updateStatus'])->name('articles.updateStatus');
+
+    Route::get('/editor/dashboard', [EditorController::class, 'dashboard'])->name('editor.dashboard');
     Route::get('/journalist/dashboard', [JournalistController::class, 'dashboard'])->name('journalist.dashboard');
+
     Route::resource('articles', ArticleController::class);
 
 });
