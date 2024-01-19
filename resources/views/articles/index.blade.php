@@ -35,8 +35,15 @@
                     <div class="card mb-3">
                         <div class="card-body">
                             <h5 class="card-title">{{ $article->title }}</h5>
-                            <p class="card-text">{{ Str::limit($article->content, 100) }}</p>
-                            <a href="{{ route('articles.show', $article->id) }}" class="btn btn-primary">Read More</a>
+                            @if(Auth::check())
+                                <p class="card-text">{{ Str::limit($article->content, 100) }}</p>
+                            @else
+                                <p class="card-text">Please log in to read the article.</p>
+                            @endif
+                            <p class="card-text"><small class="text-muted">Published on: {{ $article->created_at->format('M d, Y') }}</small></p>
+                            @if(!Auth::check())
+                                <a href="{{route('login') }}" class="btn btn-primary">Read More</a>
+                            @endif
                         </div>
                     </div>
                 @endforeach
@@ -44,15 +51,22 @@
                     <p>No articles available.</p>
                 @endif
             </div>
+
             @foreach(['artistic', 'technic', 'science', 'moda'] as $category)
                 <div class="tab-pane" id="{{ $category }}" role="tabpanel" aria-labelledby="{{ $category }}-tab">
                     @foreach ($articles->where('category', $category) as $article)
                         <div class="card mb-3">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $article->title }}</h5>
-                                <p class="card-text">{{ Str::limit($article->content, 100) }}</p>
-                                <a href="{{ route('articles.show', $article->id) }}" class="btn btn-primary">Read More</a>
-                            </div>
+                                @if(Auth::check())
+                                    <p class="card-text">{{ Str::limit($article->content, 100) }}</p>
+                                @else
+                                    <p class="card-text">Please log in to read the article.</p>
+                                @endif
+                                <p class="card-text"><small class="text-muted">Published on: {{ $article->created_at->format('M d, Y') }}</small></p>
+                                @if(!Auth::check())
+                                    <a href="{{ route('login') }}" class="btn btn-primary">Read More</a>
+                                @endif                            </div>
                         </div>
                     @endforeach
                     @if($articles->where('category', $category)->count() == 0)
